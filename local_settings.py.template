@@ -1,9 +1,35 @@
+import os
+import socket
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'dev.db'             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+# set DEBUG on development laptop
+ON_DEV_MACHINE = LOCAL_DEVELOPMENT = DEBUG = TEMPLATE_DEBUG = (socket.gethostname().sta
+rtswith('Macintosh'))
 
-DEBUG = True
+if DEBUG:
+    DATABASE_ENGINE = 'sqlite3'             # 'postgresql_psycopg2', 'postgresql', 'mys
+ql', 'sqlite3' or 'oracle'.
+    DATABASE_USER = ''                      # Not used with sqlite3.
+    DATABASE_PASSWORD = ''                  # Not used with sqlite3.
+else:
+    DEBUG = True
+    DATABASE_ENGINE = 'mysql'               # 'postgresql_psycopg2', 'postgresql', 'mys
+ql', 'sqlite3' or 'oracle'.
+    DATABASE_USER = 'nattynerd'
+    DATABASE_PASSWORD = ''
+DATABASE_NAME = 'nattynerd'                 # Or path to database file if using sqlite3
+.
+DATABASE_HOST = ''                          # Set to empty string for localhost. Not us
+ed with sqlite3.
+DATABASE_PORT = ''                          # Set to empty string for default. Not used
+ with sqlite3.
+
+AKISMET_API_KEY = ''
+
+EMAIL_HOST = SERVER_EMAIL = EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'danielnaab@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+INTERNAL_IPS = ( '127.0.0.1', )
+
