@@ -1,0 +1,16 @@
+{% extends "base_2col.html" %}
+{% load i18n %}
+{% load blog_utils %}
+
+{% block title %}{% blocktrans with month|date:"F, Y" as date %}Entries for {{ date }}{% endblocktrans %} | {{ block.super }}{% endblock %}
+
+{% block sl %}
+<h2>{% blocktrans with month|date:"F, Y" as date %}Entries for {{ date }}{% endblocktrans %}</h2>
+{% if object_list %}
+{% for post in object_list %}
+    {% show_post_brief post %}
+{% endfor %}
+{% else %}
+<p>{% trans "No entries." %}</p>
+{% endif %}
+{% endblock %}

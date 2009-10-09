@@ -1,0 +1,175 @@
+{% load i18n %}
+{% load gravatar_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>{% block title %}{{ blog.title }}{% endblock %}</title>
+	{% block css %}
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
+	<!--[if lt IE 8]><link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/main.css" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/pygments.css" />
+	{% endblock %}
+	{% block extrahead %}{% endblock %}
+	{% block feeds %}{% endblock %}
+</head>
+	
+<body id="page-{% block body_id %}generic{% endblock %}">
+	<div id="body">
+		<div id="header">
+			{% block flash %}{% if flash_message %}
+			<div class="flash">
+				<div class="flash_content">{{ flash_message }}</div>
+			</div>
+			{% endif %}{% endblock %}
+			
+			<div class="container">
+				<div class="block">
+					<div class="column span-24">
+						<div id="nav">
+							{% block nav %}
+							<div class="menu">
+								<ul>
+									<li><a href="/">home</a></li>
+									<li><a href="/projects/">projects</a></li>
+									<li><a href="/contact/">contact</a></li>
+									<li><a href="/about/">about me</a></li>
+								</ul>
+							</div>
+							{% endblock %}
+						</div>
+						<a href="{% url oebfare_home %}">
+							<img src="{{ MEDIA_URL }}images/logo.png" alt="{{ blog.title }}" />
+							<img src="{{ MEDIA_URL }}images/glasses.png" alt="{{ blog.title }}" style="margin-left: -35px;"/>
+						</a>
+					</div>
+				</div>
+		</div>
+		<div id="inner">
+			<div class="container">
+				<div class="block">
+					<div class="column span-18">
+						{% block sl %}
+						{% endblock %}
+					</div>
+					<div class="column span-6 last">
+						<div class="content">
+							{% block sr %}
+							<h3>About me</h3>
+							<div>
+								<img src="{% gravatar_for_email blog.author.email 50 %}" alt="gravatar for {{ blog.author.get_profile.nickname }}" style="margin: .4em; float: left;" />
+								<p>{{ blog.author.get_profile.about_me|safe }} <a href="/about/">More ...</a></p>
+							</div>
+					
+							<h4>The nerd is also on...</h4>
+							<ul class="elsewhere">
+								{% for profile in blog.author.instant_messenger_profiles.all %}
+								<li>
+									{{ profile.name }}: <a href="{{ profile.url }}" rel="me">{{ profile.username }}</a>
+								</li>
+								{% endfor %}
+								{% for profile in blog.author.social_network_profiles.all %}
+								<li>
+									<a href="{{ profile.url }}" rel="me">{{ profile.name }}</a>
+								</li>
+								{% endfor %}
+								{% for profile in blog.author.website_profiles.all %}
+								<li>
+									<a href="{{ profile.url }}" rel="me">{{ profile.name }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+							{% endblock %}
+						</div>
+				
+						{% comment %}
+						<div class="content">
+							<h3>{% trans "Hyperlinks" %} <a href="http://feeds.feedburner.com/oebfare-latest-links"><img src="{{ MEDIA_URL }}images/feed-icon-14x14.png" alt="oebfare: Latest Links" /></a></h3>
+							{% load link_tags %}
+							{% get_links as links limit 5 %}
+							{% if links %}
+							{% for link in links %}
+							<p><a href="{{ link.url }}">{{ link.name }}</a> - {{ link.description }}</p>
+							{% endfor %}
+							{% else %}
+							<p>{% trans "No links." %}</p>
+							{% endif %}
+						</div>
+						{% endcomment %}
+						
+						<div class="content">
+							<h3>{% trans "Tags" %}</h3>
+							{% load tagging_tags %}
+							{% tag_cloud_for_model blog.Post as post_tags with steps=36 min_count=1 distribution=log%}
+							{% if post_tags %}
+							<div class="tags">
+								<p>
+									{% for tag in post_tags %}
+									<a href="{% url blog_tag_detail tag %}" style="font-size: {{ tag.font_size|add:12 }}px;">{{ tag }}</a>
+									{% endfor %}
+								</p>
+							</div>
+							{% else %}
+							<p>{% trans "No tags." %}</p>
+							{% endif %}
+						</div>
+						
+						<div class="content">
+							<h3>{% trans "Archive" %}</h3>
+							<ul>
+								{% for archive_date in date_list %}
+								<li><a href="{% url blog_archive_year archive_date.year %}">{{ archive_date.year }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="footer">
+				<div class="container">
+					<div class="block">
+						<div class="column span-24 last">
+						{% block footer %}
+							<div><a href="http://feeds.feedburner.com/oebfare-latest-entries" class="feed">Subscribe to Feed</a>  |  <a href="http://github.com/danielnaab">Source</a> based on <a href="http://github.com/mightylemon/mightylemon">mightylemon</a>  |  Copyright &copy; {% now "Y" %} Daniel Naab{% if debug %} | <a href="http://validator.w3.org/check?uri=referer">Validate Markup</a>{% endif %}</div>	
+						{% endblock %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% block extra_body %}{% endblock %}
+
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js" />
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js" />
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.color.js" />
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		$(document).ready(function()
+		{
+			$(".flash").animate({ easing: "swing", backgroundColor: "green" }, "slow").animate({ easing: "swing", backgroundColor: "lightgreen" }, "slow");
+		});
+	/* ]]> */	
+	</script>
+	
+	{% if not debug %}
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	/* ]]> */
+	</script>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		var pageTracker = _gat._getTracker("UA-1615284-1");
+		pageTracker._initData();
+		pageTracker._trackPageview();
+	/* ]]> */
+	</script>
+	{% endif %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base_2col.html" %}
+{% load i18n %}
+{% load blog_utils %}
+
+{% block title %}{% blocktrans %}Entries tagged with "{{ tag }}"{% endblocktrans %} | {{ block.super }}{% endblock %}
+
+{% block feeds %}
+{# TODO: looking into a custom tag for the feed url so reverse can be used. #}
+<link rel="alternate" type="application/rss+xml" href="/blog/feeds/tags/{{ tag }}/" title="oebfare: Entries tagged with '{{ tag }}'" />
+{% endblock %}
+
+{% block sl %}
+<div class="content">
+	<h2>{% blocktrans %}Entries tagged with "{{ tag }}"{% endblocktrans %}</h2>
+	{% if object_list %}
+	{% for post in object_list %}
+	    {% show_post_brief post %}
+	{% endfor %}
+	{% else %}
+	<p>{% trans "No entries." %}</p>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block sr %}
+{% if related_tags %}
+<h3>{% trans "Related Tags" %}</h3>
+<div class="tags">
+    <ul>
+        {% for related_tag in related_tags %}
+        <li><a href="{% url blog_tag_detail related_tag %}">{{ related_tag }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock %}

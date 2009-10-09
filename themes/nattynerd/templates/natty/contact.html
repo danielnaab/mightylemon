@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block sl %}
+<div class="content">
+	<div id="contact" class="block">
+		<h2 class="page_title">Contact Me</h2>
+		<form class="contact" action="." method="post">
+			<table>
+				<tbody>
+					{{contact_form.as_table}}
+				</tbody>
+			</table>
+			<div>
+				<input type="submit"></input>
+			</div>
+		</form>
+	
+		<h3>... or contact me via:</h3>
+
+		<div class="container">
+			<div class="block">
+				<div class="span-6">
+					<dl>
+						<dt>Email</dt>
+						<dd>
+							<a href="mailto:dan@nattynerd.com">dan@nattynerd.com</a>
+						</dd>
+					</dl>
+				</div>
+				<div class="span-6">
+					<dl>
+						<dt>Phone</dt>
+						<dd>(608) 358-8320</dd>
+					</dl>
+				</div>
+				<div class="span-6 last">
+					<dl>
+						<dt>Mail</dt>
+						<dd>
+							909 W. Grove Parkway<br/>
+							Unit #1009<br/>
+							Tempe, AZ  85283
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

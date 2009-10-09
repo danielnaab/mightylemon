@@ -1,0 +1,4 @@
+From: {{contact.email_address}}
+Name: {{contact.name}}
+
+{{contact.message}}

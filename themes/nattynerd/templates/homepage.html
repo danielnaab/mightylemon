@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load blog_utils %}
+
+{% block extrahead %}
+<link rel="openid.server" href="http://www.myopenid.com/server" />
+<link rel="openid.delegate" href="http://brosner.myopenid.com/" />
+{% endblock %}
+
+{% block feeds %}
+<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/oebfare-latest-entries" title="oebfare: Latest Entries" />
+<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/oebfare-latest-links" title="oebfare: Latest Links" />
+{% endblock %}
+
+{% block sl %}
+{% if posts %}
+{% for post in posts %}
+<div class="content">
+    {% show_post_brief post %}
+</div>
+{% endfor %}
+{% else %}
+<p>{% trans "No entries." %}</p>
+{% endif %}
+{% endblock %}

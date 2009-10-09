@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block grid_class %}yui-g{% endblock %}
+{% block content %}
+<div class="yui-main">
+    <div class="yui-b">
+        <div class="yui-gc">
+            <div class="yui-u first">
+                {% block sl %}{% endblock %}
+            </div>
+            <div id="sr" class="yui-u">
+                <div>
+                    {% block sr %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %}<div id="sl" class="yui-u first">
+    <div>
+        {% block sl %}{% endblock %}
+    </div>
+</div>
+
+<div id="sr" class="yui-u">
+    <div>
+        {% block sr %}
+        <h2>Archives</h2>
+        {% endblock %}
+    </div>
+</div>{% endcomment %}
+{% endblock %}
