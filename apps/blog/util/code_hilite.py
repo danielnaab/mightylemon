@@ -12,7 +12,6 @@ from mdx_codehilite import makeExtension
 
 from django.utils.safestring import mark_safe
 
-
 #rst -> HTML with code hiliting
 VARIANTS = {}
 
@@ -78,5 +77,3 @@ def to_html(obj):
     elif obj.markup_type == "markdown":
         html = markdown_to_html(obj.body)
     return mark_safe(html)
-
-

@@ -10,7 +10,7 @@ class LatestPostFeed(feeds.Feed):
     """
     Feed of the latest 10 posts.
     """
-    title = "oebfare: Latest Entries"
+    title = "Nattynerd - Latest Entries"
     link = "/blog/"
     
     def items(self):
@@ -31,7 +31,7 @@ class LatestPostsByTagFeed(feeds.Feed):
         return Tag.objects.get(name=bits[0])
     
     def title(self, obj):
-        return 'oebfare: Entries tagged with "%s"' % obj
+        return 'Nattynerd - Entries tagged with "%s"' % obj
     
     def description(self, obj):
         return 'The latest entries tagged with "%s"' % obj
