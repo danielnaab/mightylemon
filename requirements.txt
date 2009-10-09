@@ -5,6 +5,7 @@ docutils==0.5
 django-mailer
 django-gravatar
 markdown
+django-extensions
 
 # TODO: move to released versions.
 http://django-tagging.googlecode.com/svn/trunk/

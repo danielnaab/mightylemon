@@ -9,7 +9,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ("Brian Rosner", "brosner@gmail.com"),
+    ("Daniel Naab", "danielnaab@gmail.com"),
 )
 
 MANAGERS = ADMINS
@@ -19,7 +19,7 @@ MANAGERS = ADMINS
 # although not all choices may be avilable on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = "America/Denver"
+TIME_ZONE = "America/Phoenix"
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = "mightylemon.urls"
 
-THEME = "oebfare"
+THEME = "nattynerd"
 
 THEME_DIR = os.path.join(PROJECT_ROOT, "themes", THEME)
 
@@ -107,6 +107,8 @@ INSTALLED_APPS = (
    "django.contrib.comments",
    "django.contrib.sessions",
    "django.contrib.sites",
+   
+   "natty",
 )
 
 try:

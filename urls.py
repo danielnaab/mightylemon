@@ -22,6 +22,8 @@ urlpatterns = patterns("",
     url(r"^links/", include("links.urls")),
     url(r"^events/", include("events.urls")),
     url(r"^$", "blog.views.homepage", name="oebfare_home"),
+    
+    url(r"^", include("natty.urls")),
 )
 
 if settings.LOCAL_DEVELOPMENT:
