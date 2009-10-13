@@ -1,17 +1,16 @@
-
 from datetime import datetime
 
-from django.db import models
 from django.conf import settings
-from django.template import Context, loader
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.db import models
+from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
 
-from tagging.models import Tag
-from tagging.fields import TagField
-from mailer import send_mail
 from comment_utils.moderation import CommentModerator, moderator
+from mailer import send_mail
+from tagging.fields import TagField
+from tagging.models import Tag
 
 class Blog(models.Model):
     title = models.CharField(_("title"), max_length=100)
@@ -29,7 +28,6 @@ class Blog(models.Model):
             settings.save()
             return settings
 
-
 class BlogSettings(models.Model):
     # Good enough for now
     blog = models.ForeignKey(Blog)
@@ -46,7 +44,6 @@ class PostManager(models.Manager):
     def active(self):
         return self.filter(active=True)
         
-
 class Post(models.Model):
     blog = models.ForeignKey(Blog, related_name=_("posts"))
     title = models.CharField(_("title"), max_length=100)
@@ -83,7 +80,6 @@ class Post(models.Model):
             "slug": self.slug,
         })
         
-
 class PostModerator(CommentModerator):
     akismet = True
     email_notification = True
