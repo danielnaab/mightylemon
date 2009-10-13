@@ -80,11 +80,11 @@ a img {
 		text-decoration: none;
 	}
 
-	#footer .feed {
-		background: transparent url("/static/images/feed-icon-14x14.png") no-repeat 0 70%;
-		padding: 0.1em 20px;
-		padding-right: 0;
-	}
+.feed {
+	background: transparent url("/static/images/feed-icon-14x14.png") no-repeat 0 70%;
+	padding: 0.1em 20px;
+	padding-right: 0;
+}
 
 #nav {
 }
