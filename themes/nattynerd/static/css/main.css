@@ -1,6 +1,6 @@
 body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
+	font-family: "Helvetica Neue", Calibri, Arial, Helvetica, sans-serif;
+	font-size: 15px;
 	margin: 15px 15px 0 15px;
 	padding: 0;
 	color: #222;
@@ -18,8 +18,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	text-align: right;
 	border-bottom: 1px #483700 solid;
-	color: #555;
-	font-family: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, serif;
+	color: #666;
 	font-weight: bold;
 }
 
