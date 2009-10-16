@@ -5,12 +5,14 @@
 {% block title %}{% blocktrans day|date:"M j, Y" as date %}Entries for {{ date }}{% endblocktrans %} | {{ block.super }}{% endblock %}
 
 {% block sl %}
-<h2>{% blocktrans day|date:"M j, Y" as date %}Entries for {{ date }}{% endblocktrans %}</h2>
-{% if object_list %}
-{% for post in object_list %}
-    {% show_post_brief post %}
-{% endfor %}
-{% else %}
-<p>{% trans "No entries." %}</p>
-{% endif %}
+<div class="content">
+	<h2>{% blocktrans day|date:"M j, Y" as date %}Entries for {{ date }}{% endblocktrans %}</h2>
+	{% if object_list %}
+	{% for post in object_list %}
+	    {% show_post_brief post %}
+	{% endfor %}
+	{% else %}
+	<p>{% trans "No entries." %}</p>
+	{% endif %}
+</div>
 {% endblock %}
